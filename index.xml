@@ -13,7 +13,7 @@
       <pubDate>Wed, 16 Aug 2023 20:04:46 +0800</pubDate>
       
       <guid>https://czxcw.github.io/post/blog01/</guid>
-      <description>安装Hugo（Windows） 在GitHub上下载压缩包（最慢的方法）(==因为不支持SCSS,需要安装拓展版本==) 在E盘创建一个名为hugo的文件，在hugo文件下创建一个bin文件 将下载的压缩包解压到bin文件中 配置环境变量，在系统变量path中添加bin文件的路径 使用cmd或者powershell，输入hugo help和hugo version ,查看是否安装成功 在E盘中用powershell 输入hugo new site myblog,创建一个个人博客。 安装Git 在hugo的官网中用Git拉取一个主题（==powershell管理员模式==） 部署到远端Github上（GitHub需要与git绑定） cmd也可以启动hugo，不需要是用管理员模式（第四次启动尝试) 终端需要管理员模式，因为使用git需要管理员模式才行 Git与GitHub绑定 powershell的指令 host 查看powershell的version
+      <description>安装Hugo（Windows） 在GitHub上下载压缩包（最慢的方法）(==因为不支持SCSS,需要安装拓展版本==) 在E盘创建一个名为hugo的文件，在hugo文件下创建一个bin文件 将下载的压缩包解压到bin文件中 配置环境变量，在系统变量path中添加bin文件的路径 使用cmd或者powershell，输入hugo help和hugo version ,查看是否安装成功 在E盘中用powershell 输入hugo new site myblog,创建一个个人博客。 安装Git 在hugo的官网中用Git拉取一个主题（==powershell管理员模式==） 部署到远端Github上（GitHub需要与git绑定） cmd也可以启动hugo，不需要是用管理员模式（第四次启动尝试) 终端需要管理员模式，因为使用git需要管理员模式才行 powershell的指令 host 查看powershell的version
 cd 文件路径
 powershell的执行策略
 在powershell中无法使用Git，更改了执行策略（但还是没用，烦躁）
