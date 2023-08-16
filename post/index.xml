@@ -8,20 +8,21 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 16 Aug 2023 20:04:46 +0800</lastBuildDate><atom:link href="https://czxcw.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Blog01</title>
+      <title>用Hugo搭建个人博客实践</title>
       <link>https://czxcw.github.io/post/blog01/</link>
       <pubDate>Wed, 16 Aug 2023 20:04:46 +0800</pubDate>
       
       <guid>https://czxcw.github.io/post/blog01/</guid>
-      <description>安装Hugo（Windows） 在GitHub上下载压缩包（最慢的方法）(==因为不支持SCSS,需要安装拓展版本==) 在E盘创建一个名为hugo的文件，在hugo文件下创建一个bin文件 将下载的压缩包解压到bin文件中 配置环境变量，在系统变量path中添加bin文件的路径 使用cmd或者powershell，输入hugo help和hugo version ,查看是否安装成功 在E盘中用powershell 输入hugo new site myblog,创建一个个人博客。 安装Git 在hugo的官网中用Git拉取一个主题（==powershell管理员模式==） 部署到远端Github上（GitHub需要与git绑定） cmd也可以启动hugo，不需要是用管理员模式（第四次启动尝试) 终端需要管理员模式，因为使用git需要管理员模式才行 powershell的指令 host 查看powershell的version
-cd 文件路径
-powershell的执行策略
-在powershell中无法使用Git，更改了执行策略（但还是没用，烦躁）
-==最后发现是没有用管理员运行powershell==
-Hugo的终端指令 hugo new post/blog01.md （新建一篇文章）
+      <description>安装Hugo（Windows） 在GitHub上下载压缩包（最慢的方法）(==因为不支持SCSS,需要安装拓展版本==) 在E盘创建一个名为hugo的文件，在hugo文件下创建一个bin文件 将下载的压缩包解压到bin文件中 配置环境变量，在系统变量path中添加bin文件的路径 使用cmd或者powershell，输入hugo help和hugo version ,查看是否安装成功 在E盘中用powershell 输入hugo new site myblog,创建一个个人博客。 安装Git 在hugo的官网中用Git拉取一个主题（==powershell管理员模式==） 部署到远端Github上（GitHub需要与git绑定） cmd也可以启动hugo，不需要是用管理员模式（第四次启动尝试) 终端需要管理员模式，因为使用git需要管理员模式才行 powershell的指令 host 查看powershell的version cd 文件路径 powershell的执行策略 在powershell中无法使用Git，更改了执行策略（但还是没用，烦躁） ==最后发现是没有用管理员运行powershell== Hugo的终端指令 hugo new post/blog01.md （新建一篇文章）
 hugo server &amp;ndash;theme=m10c &amp;ndash;buildDrafts （本地启动项目）
 将个人博客部署的到远端github
-hugo &amp;ndash;theme=m10c &amp;ndash;baseURL=&amp;ldquo;https://czxcw.github.io&amp;rdquo; &amp;ndash;buildDraft（会在根目录下生成一个public文件） git init （让public文件成为本地仓库，初始化一个git仓库） git remote add origin https://github.com/czxcw/czxcw.github.io.git(第一次才使用此命令，让本地仓库和github仓库关联) git add .(将所有文件都添加到暂存区)[在public文件下使用] git commit -m &amp;ldquo;提交信息&amp;rdquo;（将暂存区的文件提交到当前的分支） git push -u origin master（将本地仓库推到远端的GitHub仓库上） 如何更新博客和发布新的博客 hugo new post/blog01.md （新建一篇文章）{如果要发布新的博客，使用此命令} hugo server &amp;ndash;theme=m10c &amp;ndash;buildDrafts （本地启动项目） hugo &amp;ndash;theme=m10c &amp;ndash;baseURL=&amp;ldquo;https://czxcw.</description>
+hugo &amp;ndash;theme=m10c &amp;ndash;baseURL=&amp;ldquo;https://czxcw.github.io&amp;rdquo; &amp;ndash;buildDraft（会在根目录下生成一个public文件）
+git init （让public文件成为本地仓库，初始化一个git仓库）
+git remote add origin https://github.com/czxcw/czxcw.github.io.git(第一次才使用此命令，让本地仓库和github仓库关联)
+git add .(将所有文件都添加到暂存区)[在public文件下使用]
+git commit -m &amp;ldquo;提交信息&amp;rdquo;（将暂存区的文件提交到当前的分支）
+git push -u origin master（将本地仓库推到远端的GitHub仓库上）
+如何更新博客和发布新的博客 hugo new post/blog01.md （新建一篇文章）{如果要发布新的博客，使用此命令} hugo server &amp;ndash;theme=m10c &amp;ndash;buildDrafts （本地启动项目） hugo &amp;ndash;theme=m10c &amp;ndash;baseURL=&amp;ldquo;https://czxcw.</description>
     </item>
     
   </channel>
