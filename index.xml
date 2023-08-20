@@ -6,7 +6,16 @@
     <description>Recent content on Welcome To Myblog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 16 Aug 2023 20:04:46 +0800</lastBuildDate><atom:link href="https://czxcw.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Aug 2023 15:54:58 +0800</lastBuildDate><atom:link href="https://czxcw.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>递归思想</title>
+      <link>https://czxcw.github.io/post/blog02/</link>
+      <pubDate>Sun, 20 Aug 2023 15:54:58 +0800</pubDate>
+      
+      <guid>https://czxcw.github.io/post/blog02/</guid>
+      <description>递归 递归中使用的是引用类型的变量，就会共享引用类型的数据（？） /* 递归的中的逆向思维 1. 递归函数的定义 2. 基础情况的处理 3. 递归调用 4. 递推到当前层 */ public int recursion(int n)//递归函数的定义 { if(n == 1)//基础情况的处理 { return 1; } tmp = recursion(n-1);//递归调用 return tmp * n;//递推到当前层 } // 逆向思维，由未知逐渐推向已知 //从最基础的已知答案 按照一定的规律 逐渐获得更高一层的答案 直到最高层 </description>
+    </item>
+    
     <item>
       <title>用Hugo搭建个人博客实践</title>
       <link>https://czxcw.github.io/post/blog01/</link>
