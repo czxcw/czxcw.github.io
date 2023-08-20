@@ -13,10 +13,12 @@
     
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="递归思想"/>
-<meta name="twitter:description" content="递归 递归中使用的是引用类型的变量，就会共享引用类型的数据（？） /* 递归的中的逆向思维 1. 递归函数的定义 2. 基础情况的处理 3. 递归调用 4. 递推到当前层 */ public int recursion(int n)//递归函数的定义 { if(n == 1)//基础情况的处理 { return 1; } tmp = recursion(n-1);//递归调用 return tmp * n;//递推到当前层 } // 逆向思维，由未知逐渐推向已知 //从最基础的已知答案 按照一定的规律 逐渐获得更高一层的答案 直到最高层 "/>
+<meta name="twitter:description" content="递归 递归中使用的是引用类型的变量，就会共享引用类型的数据（？） /* 递归的中的逆向思维 1. 递归函数的定义 2. 基础情况的处理 3. 递归调用 4. 递推到当前层 */ public int recursion(int n)//递归函数的定义 { if(n == 1)//基础情况的处理 { return 1; } tmp = recursion(n-1);//递归调用 return tmp * n;//递推到当前层 } // 逆向思维，由未知逐渐推向已知 //从最基础的已知答案 按照一定的规律 逐渐获得更高一层的答案 直到最高层 汉诺塔问题 用冰箱装大象需要3步
+打开冰箱 把大象塞进冰箱 关上冰箱 public class HanoiTower { public static void main(String[] args) { Tower t = new Tower(); t.move(2, &#39;A&#39;, &#39;B&#39;, &#39;C&#39;); } } class Tower { public void move(int nums, char a, char b, char c) { if(nums == 1) System."/>
 
     <meta property="og:title" content="递归思想" />
-<meta property="og:description" content="递归 递归中使用的是引用类型的变量，就会共享引用类型的数据（？） /* 递归的中的逆向思维 1. 递归函数的定义 2. 基础情况的处理 3. 递归调用 4. 递推到当前层 */ public int recursion(int n)//递归函数的定义 { if(n == 1)//基础情况的处理 { return 1; } tmp = recursion(n-1);//递归调用 return tmp * n;//递推到当前层 } // 逆向思维，由未知逐渐推向已知 //从最基础的已知答案 按照一定的规律 逐渐获得更高一层的答案 直到最高层 " />
+<meta property="og:description" content="递归 递归中使用的是引用类型的变量，就会共享引用类型的数据（？） /* 递归的中的逆向思维 1. 递归函数的定义 2. 基础情况的处理 3. 递归调用 4. 递推到当前层 */ public int recursion(int n)//递归函数的定义 { if(n == 1)//基础情况的处理 { return 1; } tmp = recursion(n-1);//递归调用 return tmp * n;//递推到当前层 } // 逆向思维，由未知逐渐推向已知 //从最基础的已知答案 按照一定的规律 逐渐获得更高一层的答案 直到最高层 汉诺塔问题 用冰箱装大象需要3步
+打开冰箱 把大象塞进冰箱 关上冰箱 public class HanoiTower { public static void main(String[] args) { Tower t = new Tower(); t.move(2, &#39;A&#39;, &#39;B&#39;, &#39;C&#39;); } } class Tower { public void move(int nums, char a, char b, char c) { if(nums == 1) System." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://czxcw.github.io/post/blog02/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-08-20T15:54:58+08:00" />
@@ -101,7 +103,41 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// 逆向思维，由未知逐渐推向已知
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">//从最基础的已知答案 按照一定的规律 逐渐获得更高一层的答案 直到最高层
-</span></span></span></code></pre></div>
+</span></span></span></code></pre></div><h1 id="汉诺塔问题">汉诺塔问题</h1>
+<blockquote>
+<p>用冰箱装大象需要3步</p>
+<ol>
+<li>打开冰箱</li>
+<li>把大象塞进冰箱</li>
+<li>关上冰箱</li>
+</ol>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HanoiTower</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Tower t <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Tower<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        t<span style="color:#f92672">.</span><span style="color:#a6e22e">move</span><span style="color:#f92672">(</span>2<span style="color:#f92672">,</span> <span style="color:#e6db74">&#39;A&#39;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#39;B&#39;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#39;C&#39;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tower</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">move</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> nums<span style="color:#f92672">,</span> <span style="color:#66d9ef">char</span> a<span style="color:#f92672">,</span> <span style="color:#66d9ef">char</span> b<span style="color:#f92672">,</span> <span style="color:#66d9ef">char</span> c<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>nums <span style="color:#f92672">==</span> 1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        	System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>a <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;-&gt;&#34;</span> <span style="color:#f92672">+</span> c<span style="color:#f92672">);</span><span style="color:#75715e">//基础情况的处理
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        	<span style="color:#75715e">//1.将n-1个盘子从A柱移动到B柱（C为工具柱）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        	move<span style="color:#f92672">(</span>nums <span style="color:#f92672">-</span> 1<span style="color:#f92672">,</span> a<span style="color:#f92672">,</span> c<span style="color:#f92672">,</span> b<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        	<span style="color:#75715e">//2.将A柱底下最大的盘子移动到C柱
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        	System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>a <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;-&gt;&#34;</span> <span style="color:#f92672">+</span> c<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        	<span style="color:#75715e">//3.将B柱的n-1个盘子移动到C柱（A为工具柱）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        	move<span style="color:#f92672">(</span>nums <span style="color:#f92672">-</span> 1<span style="color:#f92672">,</span> b<span style="color:#f92672">,</span> a<span style="color:#f92672">,</span> c<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div>
     </div>
     <div class="post-footer">
       

@@ -13,7 +13,8 @@
       <pubDate>Sun, 20 Aug 2023 15:54:58 +0800</pubDate>
       
       <guid>https://czxcw.github.io/post/blog02/</guid>
-      <description>递归 递归中使用的是引用类型的变量，就会共享引用类型的数据（？） /* 递归的中的逆向思维 1. 递归函数的定义 2. 基础情况的处理 3. 递归调用 4. 递推到当前层 */ public int recursion(int n)//递归函数的定义 { if(n == 1)//基础情况的处理 { return 1; } tmp = recursion(n-1);//递归调用 return tmp * n;//递推到当前层 } // 逆向思维，由未知逐渐推向已知 //从最基础的已知答案 按照一定的规律 逐渐获得更高一层的答案 直到最高层 </description>
+      <description>递归 递归中使用的是引用类型的变量，就会共享引用类型的数据（？） /* 递归的中的逆向思维 1. 递归函数的定义 2. 基础情况的处理 3. 递归调用 4. 递推到当前层 */ public int recursion(int n)//递归函数的定义 { if(n == 1)//基础情况的处理 { return 1; } tmp = recursion(n-1);//递归调用 return tmp * n;//递推到当前层 } // 逆向思维，由未知逐渐推向已知 //从最基础的已知答案 按照一定的规律 逐渐获得更高一层的答案 直到最高层 汉诺塔问题 用冰箱装大象需要3步
+打开冰箱 把大象塞进冰箱 关上冰箱 public class HanoiTower { public static void main(String[] args) { Tower t = new Tower(); t.move(2, &amp;#39;A&amp;#39;, &amp;#39;B&amp;#39;, &amp;#39;C&amp;#39;); } } class Tower { public void move(int nums, char a, char b, char c) { if(nums == 1) System.</description>
     </item>
     
     <item>
