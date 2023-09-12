@@ -6,7 +6,23 @@
     <description>Recent content on Welcome To Myblog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 20 Aug 2023 15:54:58 +0800</lastBuildDate><atom:link href="https://czxcw.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 Sep 2023 10:52:14 +0800</lastBuildDate><atom:link href="https://czxcw.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>java学习笔记</title>
+      <link>https://czxcw.github.io/post/blog03/</link>
+      <pubDate>Tue, 12 Sep 2023 10:52:14 +0800</pubDate>
+      
+      <guid>https://czxcw.github.io/post/blog03/</guid>
+      <description>传递基本类型 在主方法中调用类中方法，会开辟一个新栈 类中的基本类型参数不会改变主方法中的实参（==复制了一份实参传递进去==） 编程思想 化繁为简，先死后活 找出不正确的条件，过关斩将（校验） 一段代码一个小功能 尽量复用代码 传递地址（引用类型） ==传递的是一个地址== 类中方法改变其引用类型的值，主方法中的值也改变（地址没变），改变的是他的本体 在类中调用其他类中的方法 类的==实际内存空间开辟在堆中==，传递的形参为==类在栈中的地址==（引用类型） 调用方法时，开辟新栈，在新栈中的==形参即局部变量与主方法中的实参无关== 引用数据类型指向堆中数据，实参指向它，形参也指向它 若在形参指向它时，改变堆中数据，实参指向的数据也会改变 若形参指向NULL，实参的指向不变 若形参指向一个新的空间，实参的指向不变 ==实参和形参时相互独立的==
+Java中的数据类型 ![Java数据类型](C:\Users\20288\Pictures\Screenshots\屏幕截图 2023-08-19 100326.png &amp;ldquo;Java数据类型&amp;rdquo;)
+递归调用 谁调用谁返回（return）
+递归中使用的是引用类型的变量，就会共享引用类型的数据（？）
+使用递归的关键
+找到递归的规律
+==找到结束递归的条件，使用递归的规律逼近结束递归的条件==
+/* 递归的中的逆向思维 1. 递归函数的定义 2. 基础情况的处理 3. 递归调用 4. 递推到当前层 */ public int recursion(int n)//递归函数的定义 { if(n == 1)//基础情况的处理 { return 1; } tmp = recursion(n-1);//递归调用 return tmp * n;//递推到当前层 } // 逆向思维，由未知逐渐推向已知 //从最基础的已知答案 按照一定的规律 逐渐获得更高一层的答案 直到最高层 作用域及其细节 //作用域的练习 public class VarScope { public static void main(String[] args) { Person p = new Person(); p.</description>
+    </item>
+    
     <item>
       <title>递归思想</title>
       <link>https://czxcw.github.io/post/blog02/</link>

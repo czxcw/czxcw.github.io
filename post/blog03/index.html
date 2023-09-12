@@ -1,0 +1,1128 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>java学习笔记 // Welcome To Myblog</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.117.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="无涯崽" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/css/main.min.3c3c186cd62e563ad6e2f00a89dbee656ab912d1d46f856b5605dd0232521e2a.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="java学习笔记"/>
+<meta name="twitter:description" content="传递基本类型 在主方法中调用类中方法，会开辟一个新栈 类中的基本类型参数不会改变主方法中的实参（==复制了一份实参传递进去==） 编程思想 化繁为简，先死后活 找出不正确的条件，过关斩将（校验） 一段代码一个小功能 尽量复用代码 传递地址（引用类型） ==传递的是一个地址== 类中方法改变其引用类型的值，主方法中的值也改变（地址没变），改变的是他的本体 在类中调用其他类中的方法 类的==实际内存空间开辟在堆中==，传递的形参为==类在栈中的地址==（引用类型） 调用方法时，开辟新栈，在新栈中的==形参即局部变量与主方法中的实参无关== 引用数据类型指向堆中数据，实参指向它，形参也指向它 若在形参指向它时，改变堆中数据，实参指向的数据也会改变 若形参指向NULL，实参的指向不变 若形参指向一个新的空间，实参的指向不变 ==实参和形参时相互独立的==
+Java中的数据类型 ![Java数据类型](C:\Users\20288\Pictures\Screenshots\屏幕截图 2023-08-19 100326.png &ldquo;Java数据类型&rdquo;)
+递归调用 谁调用谁返回（return）
+递归中使用的是引用类型的变量，就会共享引用类型的数据（？）
+使用递归的关键
+找到递归的规律
+==找到结束递归的条件，使用递归的规律逼近结束递归的条件==
+/* 递归的中的逆向思维 1. 递归函数的定义 2. 基础情况的处理 3. 递归调用 4. 递推到当前层 */ public int recursion(int n)//递归函数的定义 { if(n == 1)//基础情况的处理 { return 1; } tmp = recursion(n-1);//递归调用 return tmp * n;//递推到当前层 } // 逆向思维，由未知逐渐推向已知 //从最基础的已知答案 按照一定的规律 逐渐获得更高一层的答案 直到最高层 作用域及其细节 //作用域的练习 public class VarScope { public static void main(String[] args) { Person p = new Person(); p."/>
+
+    <meta property="og:title" content="java学习笔记" />
+<meta property="og:description" content="传递基本类型 在主方法中调用类中方法，会开辟一个新栈 类中的基本类型参数不会改变主方法中的实参（==复制了一份实参传递进去==） 编程思想 化繁为简，先死后活 找出不正确的条件，过关斩将（校验） 一段代码一个小功能 尽量复用代码 传递地址（引用类型） ==传递的是一个地址== 类中方法改变其引用类型的值，主方法中的值也改变（地址没变），改变的是他的本体 在类中调用其他类中的方法 类的==实际内存空间开辟在堆中==，传递的形参为==类在栈中的地址==（引用类型） 调用方法时，开辟新栈，在新栈中的==形参即局部变量与主方法中的实参无关== 引用数据类型指向堆中数据，实参指向它，形参也指向它 若在形参指向它时，改变堆中数据，实参指向的数据也会改变 若形参指向NULL，实参的指向不变 若形参指向一个新的空间，实参的指向不变 ==实参和形参时相互独立的==
+Java中的数据类型 ![Java数据类型](C:\Users\20288\Pictures\Screenshots\屏幕截图 2023-08-19 100326.png &ldquo;Java数据类型&rdquo;)
+递归调用 谁调用谁返回（return）
+递归中使用的是引用类型的变量，就会共享引用类型的数据（？）
+使用递归的关键
+找到递归的规律
+==找到结束递归的条件，使用递归的规律逼近结束递归的条件==
+/* 递归的中的逆向思维 1. 递归函数的定义 2. 基础情况的处理 3. 递归调用 4. 递推到当前层 */ public int recursion(int n)//递归函数的定义 { if(n == 1)//基础情况的处理 { return 1; } tmp = recursion(n-1);//递归调用 return tmp * n;//递推到当前层 } // 逆向思维，由未知逐渐推向已知 //从最基础的已知答案 按照一定的规律 逐渐获得更高一层的答案 直到最高层 作用域及其细节 //作用域的练习 public class VarScope { public static void main(String[] args) { Person p = new Person(); p." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://czxcw.github.io/post/blog03/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-09-12T10:52:14+08:00" />
+<meta property="article:modified_time" content="2023-09-12T10:52:14+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://czxcw.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="无涯崽" /></a>
+      <span class="app-header-title">Welcome To Myblog</span>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">主页</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">标签</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/about/">关于</a>
+      </nav>
+      <p>小白一枚</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/czxcw" target="_blank" rel="noreferrer noopener me">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>Github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+          </a>
+        
+          <a href="https://twitter.com/gohugoio" target="_blank" rel="noreferrer noopener me">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>Twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">java学习笔记</h1>
+      <div class="post-meta">
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Sep 12, 2023
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          9 min read
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <h1 id="传递基本类型">传递基本类型</h1>
+<ul>
+<li>在主方法中调用类中方法，会开辟一个新栈</li>
+<li>类中的基本类型参数不会改变主方法中的实参（==复制了一份实参传递进去==）</li>
+</ul>
+<h1 id="编程思想">编程思想</h1>
+<ul>
+<li>化繁为简，先死后活</li>
+<li>找出不正确的条件，过关斩将（校验）</li>
+<li>一段代码一个小功能</li>
+<li>尽量复用代码</li>
+</ul>
+<h1 id="传递地址引用类型">传递地址（引用类型）</h1>
+<ul>
+<li>==传递的是一个地址==</li>
+<li>类中方法改变其引用类型的值，主方法中的值也改变（地址没变），改变的是他的本体</li>
+</ul>
+<h1 id="在类中调用其他类中的方法">在类中调用其他类中的方法</h1>
+<ul>
+<li>类的==实际内存空间开辟在堆中==，传递的形参为==类在栈中的地址==（引用类型）</li>
+<li>调用方法时，开辟新栈，在新栈中的==形参即局部变量与主方法中的实参无关==
+<ol>
+<li>引用数据类型指向堆中数据，实参指向它，形参也指向它</li>
+<li>若在形参指向它时，改变堆中数据，实参指向的数据也会改变</li>
+<li>若形参指向NULL，实参的指向不变</li>
+<li>若形参指向一个新的空间，实参的指向不变</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>==实参和形参时相互独立的==</p>
+</blockquote>
+<h1 id="java中的数据类型">Java中的数据类型</h1>
+<p>![Java数据类型](C:\Users\20288\Pictures\Screenshots\屏幕截图 2023-08-19 100326.png &ldquo;Java数据类型&rdquo;)</p>
+<h1 id="递归调用">递归调用</h1>
+<ul>
+<li>
+<p>谁调用谁返回（return）</p>
+</li>
+<li>
+<p>递归中使用的是引用类型的变量，就会共享引用类型的数据（？）</p>
+</li>
+<li>
+<p>使用递归的关键</p>
+<p>找到递归的规律</p>
+<p>==找到结束递归的条件，使用递归的规律逼近结束递归的条件==</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> 递归的中的逆向思维
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> 1. 递归函数的定义
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> 2. 基础情况的处理
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> 3. 递归调用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> 4. 递推到当前层
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">recursion</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> n<span style="color:#f92672">)</span><span style="color:#75715e">//递归函数的定义
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>n <span style="color:#f92672">==</span> 1<span style="color:#f92672">)</span><span style="color:#75715e">//基础情况的处理
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> 1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    tmp <span style="color:#f92672">=</span> recursion<span style="color:#f92672">(</span>n<span style="color:#f92672">-</span>1<span style="color:#f92672">);</span><span style="color:#75715e">//递归调用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> tmp <span style="color:#f92672">*</span> n<span style="color:#f92672">;</span><span style="color:#75715e">//递推到当前层
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 逆向思维，由未知逐渐推向已知
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//从最基础的已知答案 按照一定的规律 逐渐获得更高一层的答案 直到最高层
+</span></span></span></code></pre></div><h1 id="作用域及其细节">作用域及其细节</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//作用域的练习
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">VarScope</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>         Person p <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Person<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>         p<span style="color:#f92672">.</span><span style="color:#a6e22e">say</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cat</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//全局变量一般指类中的属性 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">//属性在定义时可以赋值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">int</span> age <span style="color:#f92672">=</span> 10<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">cry</span><span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">//1. 局部变量一般指在成员方法中的变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#75715e">//2. 其作用域在成员方法中
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#75715e">//3. 除了属性之外的其他变量都是局部变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> 10<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>		String name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jack&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;在eat方法中使用属性age&#34;</span> <span style="color:#f92672">+</span> age<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">eat</span><span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;在eat方法中使用属性age&#34;</span> <span style="color:#f92672">+</span> age<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">//System.out.println(&#34;在eat方法中使用cry方法中的name&#34; + name); 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//全局变量（属性）可以不赋值，因为有默认值；局部变量必须赋值因为没有默认值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	String name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jack&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">say</span><span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">//属性和局部变量可以重名，遵循就近原则；
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		String name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;harry&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;say()的name：&#34;</span> <span style="color:#f92672">+</span> name<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//全局变量随着对象的创建而创建，销毁而销毁；局部变量随着代码块（方法）的执行而创建，结束而销毁
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//作用域范围不同：
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//全局变量：可以被本类使用，也可以被其他类使用（通过对象调用，或者做为参数传递）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//局部变量：只能在本类中对应的方法中使用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//修饰符不同：
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//全局变量可以加修饰符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//局部变量不可以加修饰符
+</span></span></span></code></pre></div><h1 id="构造器">构造器</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//构造器的练习
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//构造方法又叫构造器，是类的一种特殊的方法，它的主要作用是完成对新对象的初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> 特点：
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> 1. 方法名和类名相同
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> 2. 没有返回值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> 3. 在创建对象时，系统会自动的调用该类的构造器完成对象的初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">          对象在堆中
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Constructor</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>           Person p1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Person<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jack&#34;</span><span style="color:#f92672">,</span> 21<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>           System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;p1.name= &#34;</span> <span style="color:#f92672">+</span> p1<span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\t&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;p1.age= &#34;</span> <span style="color:#f92672">+</span> p1<span style="color:#f92672">.</span><span style="color:#a6e22e">age</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>           Person p2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Person<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;harry&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>           System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;p2.name= &#34;</span> <span style="color:#f92672">+</span> p2<span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	String name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> age<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//构造器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Person</span><span style="color:#f92672">(</span>String pName<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> pAge<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>         name <span style="color:#f92672">=</span> pName<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>         age <span style="color:#f92672">=</span> pAge<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//一个类可以有多个构造器(构造器重载)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Person</span><span style="color:#f92672">(</span>String pName<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>          name <span style="color:#f92672">=</span> pName<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//如果程序员没有定义构造器，系统会自动为类生成一个默认无参构造器(默认构造器)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Dog</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">	   默认构造器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        Dog()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">       {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">	
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">       }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">       //javap 反编译
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">	*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Dog</span><span style="color:#f92672">(</span>String dName<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    Dog<span style="color:#f92672">()</span><span style="color:#75715e">//显式定义
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//一旦自己定义了构造器，默认构造器就会被覆盖
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//除非显式的定义，
+</span></span></span></code></pre></div><p>![对象创建的流程分析](C:\Users\20288\Pictures\Screenshots\屏幕截图 2023-08-21 161250.png &ldquo;对象创建流程分析&rdquo;)</p>
+<h1 id="this">this</h1>
+<ul>
+<li>this指向的是自己；==哪个对象调用，this就代表哪个对象==</li>
+</ul>
+<p>![this的内存机制](C:\Users\20288\Pictures\Screenshots\屏幕截图 2023-08-22 092303.png &ldquo;this的内存机制&rdquo;)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//this 的练习
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">This</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>         Person p <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Person<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;二狗&#34;</span><span style="color:#f92672">,</span> 21<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>         System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;p的hashcode值：&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\t&#34;</span> <span style="color:#f92672">+</span> p<span style="color:#f92672">.</span><span style="color:#a6e22e">hashCode</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>         p<span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>         Person p1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Person<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>         p1<span style="color:#f92672">.</span><span style="color:#a6e22e">f2</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>         Person p2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Person<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;二狗&#34;</span><span style="color:#f92672">,</span> 21<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>         System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;p与p2 比较的结果=&#34;</span> <span style="color:#f92672">+</span> p<span style="color:#f92672">.</span><span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span>p2<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//this 不能在类定义的外部使用，只能在类定义的方法中使用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	String name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> age<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Person</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> age<span style="color:#f92672">)</span><span style="color:#75715e">//运行构造器的时候，对象已经有了
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">//this.name 指的是当前对象的属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">//访问构造器语法：this(参数列表);只能在构造器中使用(只能在构造器中访问另一个构造器)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> age<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;this的hashCode值：&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\t&#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">hashCode</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Person(String name, int age)构造器&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Person</span><span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">//访问构造器，必须置于第一条语句
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jack&#34;</span><span style="color:#f92672">,</span> 18<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Person()构造器&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print</span><span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">//this 可以区分当前类的属性和局部变量;this访问本类属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		String name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;张三&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>name <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\t&#34;</span> <span style="color:#f92672">+</span> age <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\t&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\t&#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\t&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//细节：访问成员方法的语法：this.方法名(参数列表);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">f1</span><span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;f1() 方法&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">f2</span><span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		f1<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">f1</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//compareTo比较
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span>Person p<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>p<span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">)</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">==</span> p<span style="color:#f92672">.</span><span style="color:#a6e22e">age</span><span style="color:#f92672">;</span> 
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h1 id="包">包</h1>
+<blockquote>
+<p>包的本质：创建不同的文件夹来保存类文件</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.use<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.xiaoming.Dog<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Dog dog <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Dog<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>dog<span style="color:#f92672">);</span><span style="color:#75715e">//输出哈希code码的16进制 com.xiaoming.Dog@14ae5a5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>        com<span style="color:#f92672">.</span><span style="color:#a6e22e">xiaoqiang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Dog</span> dog1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> com<span style="color:#f92672">.</span><span style="color:#a6e22e">xiaoqiang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Dog</span><span style="color:#f92672">();</span><span style="color:#75715e">//区分xiaoming的包
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>dog1<span style="color:#f92672">);</span><span style="color:#75715e">//输出com.xiaoqiang.Dog@7f31245a
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="包的命名规则">包的命名规则：</h2>
+<ul>
+<li>
+<p>只能包含字母，数字，下划线，小圆点，但不能用数字开头，不能是关键字或保留字</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>demo<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">exec1</span><span style="color:#75715e">//错误 有关键字class
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>demo<span style="color:#f92672">.</span><span style="color:#a6e22e">12a</span><span style="color:#75715e">//错误 12a 数字开头
+</span></span></span></code></pre></div></li>
+</ul>
+<p>包的命名规范：</p>
+<ul>
+<li>
+<p>小写字母+小圆点</p>
+</li>
+<li>
+<p>com.公司名.项目名.业务模块名</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>com<span style="color:#f92672">.</span><span style="color:#a6e22e">sina</span><span style="color:#f92672">.</span><span style="color:#a6e22e">crm</span><span style="color:#f92672">.</span><span style="color:#a6e22e">user</span><span style="color:#75715e">//用户模块
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>com<span style="color:#f92672">.</span><span style="color:#a6e22e">sina</span><span style="color:#f92672">.</span><span style="color:#a6e22e">crm</span><span style="color:#f92672">.</span><span style="color:#a6e22e">order</span><span style="color:#75715e">//订单模块
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>com<span style="color:#f92672">.</span><span style="color:#a6e22e">sina</span><span style="color:#f92672">.</span><span style="color:#a6e22e">crm</span><span style="color:#f92672">.</span><span style="color:#a6e22e">utils</span><span style="color:#75715e">//工具类
+</span></span></span></code></pre></div></li>
+</ul>
+<p>Java常用的包</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>java<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#75715e">//lang包是基本包，默认引入
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>java<span style="color:#f92672">.</span><span style="color:#a6e22e">util</span><span style="color:#75715e">//util包，系统提供的工具包，工具类；如：Scanner
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>java<span style="color:#f92672">.</span><span style="color:#a6e22e">net</span><span style="color:#75715e">//网络包，网路开发
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>java<span style="color:#f92672">.</span><span style="color:#a6e22e">awt</span><span style="color:#75715e">//是做java的界面开发，GUI
+</span></span></span></code></pre></div><h2 id="包的使用细节">包的使用细节</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.czxlx.pkg<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//注意事项与使用细节：
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//1.package的作用是声明当前类所在包，需要放在类的最上面，一个类中最多只有一个package
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//2.import指令 位置放在package下面，在类定义的前面，可以有多句没有顺序要求
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//注意：第一种方法更好，需要哪个类就用哪个类
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//import java.util.Scanner;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 表示只会引入java.util包下的Scanner类
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Arrays<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//import java.util.*;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 表示将java.util包下的所有类都引入
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Import01</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//使用系统提供 Arrays 完成数组排序
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr <span style="color:#f92672">=</span> <span style="color:#f92672">{-</span>1<span style="color:#f92672">,</span> 2<span style="color:#f92672">,</span> 29<span style="color:#f92672">,</span> 13<span style="color:#f92672">,</span> 3<span style="color:#f92672">};</span>
+</span></span><span style="display:flex;"><span>        Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span>arr<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//输出排序结果
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> arr<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>arr<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\t&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>![类的完善路径](C:\Users\20288\Pictures\Screenshots\屏幕截图 2023-08-24 144913.png &ldquo;类的完善路径&rdquo;)</p>
+<h1 id="idea部分快捷键使用">Idea部分快捷键使用</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Scanner<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ArrayTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//使用模板
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Scanner scanner <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner<span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">in</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//alt + enter 导入Scanner类; 加.var自动分配变量名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//快速格式化代码 ctrl + alt + L
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//删除当前行 ctrl + d
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//复制当前行 ctrl + alt + 向下箭头;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//补全代码 alt + /
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        MyTools mt <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyTools<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>10<span style="color:#f92672">,</span> 2<span style="color:#f92672">,</span> 18<span style="color:#f92672">,</span> <span style="color:#f92672">-</span>1<span style="color:#f92672">,</span> 3<span style="color:#f92672">};</span>
+</span></span><span style="display:flex;"><span>        mt<span style="color:#f92672">.</span><span style="color:#a6e22e">bubble</span><span style="color:#f92672">(</span>arr<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//输出排序后的arr
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> arr<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>arr<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\t&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//src 存放.java文件;out 存放编译后的.class文件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//创建一个类MyTools,编写一个方法,可以完成对int数组冒泡排序的功能
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyTools</span> <span style="color:#f92672">{</span><span style="color:#75715e">//ctrl + H 查看继承层级关系
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">bubble</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr<span style="color:#f92672">)</span> <span style="color:#f92672">{</span><span style="color:#75715e">//ctrl + B 定位方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//冒泡排序
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> tem <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> arr<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> 1<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span><span style="color:#75715e">//排序的轮数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> j <span style="color:#f92672">&lt;</span> arr<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> 1 <span style="color:#f92672">-</span> i<span style="color:#f92672">;</span> j<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span><span style="color:#75715e">//比较的次数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>arr<span style="color:#f92672">[</span>j<span style="color:#f92672">]</span> <span style="color:#f92672">&gt;</span> arr<span style="color:#f92672">[</span>j <span style="color:#f92672">+</span> 1<span style="color:#f92672">])</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                    tem <span style="color:#f92672">=</span> arr<span style="color:#f92672">[</span>j <span style="color:#f92672">+</span> 1<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>                    arr<span style="color:#f92672">[</span>j <span style="color:#f92672">+</span> 1<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> arr<span style="color:#f92672">[</span>j<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>                    arr<span style="color:#f92672">[</span>j<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> tem<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    String name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> age<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//构造器快捷键 Alt + Insert
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Person</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> age<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> age<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h1 id="访问修饰符">访问修饰符</h1>
+<p>![访问修饰符](C:\Users\20288\Pictures\Screenshots\屏幕截图 2023-08-24 150637.png)</p>
+<ul>
+<li>只有public和默认可以修饰类</li>
+<li>成员方法的访问规则与访问属性是一样的</li>
+</ul>
+<h1 id="封装">封装</h1>
+<p>![](C:\Users\20288\Pictures\Screenshots\屏幕截图 2023-08-24 155320.png)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.czxlx.encap<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Encapsulation01</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Person person <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Person<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        person<span style="color:#f92672">.</span><span style="color:#a6e22e">setName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;张三&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        person<span style="color:#f92672">.</span><span style="color:#a6e22e">setAge</span><span style="color:#f92672">(</span>30<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        person<span style="color:#f92672">.</span><span style="color:#a6e22e">setSalary</span><span style="color:#f92672">(</span>30000<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>person<span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//如果使用构造器指定属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Person jack <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Person<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jack&#34;</span><span style="color:#f92672">,</span> 200<span style="color:#f92672">,</span> 5000<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;====jack的信息====&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>jack<span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> 创建一个person类，不能随便查看人的工资和隐私，并对设置的年龄进行合理的验证。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> 年龄合理就设置，否则给默认年龄，必须在1~120，工资不能直接查看，name的长度在2~6字符之间
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String name<span style="color:#f92672">;</span><span style="color:#75715e">//名字公开
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> age<span style="color:#f92672">;</span><span style="color:#75715e">//年龄私有
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">double</span> salary<span style="color:#f92672">;</span><span style="color:#75715e">//工资私有
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//使用快捷键 alt + insert
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//根据需求来完善代码
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//默认构造器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Person</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//三个属性的构造器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Person</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> age<span style="color:#f92672">,</span> <span style="color:#66d9ef">double</span> salary<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//        this.name = name;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//        this.age = age;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//        this.salary = salary;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//可以set方法写在构造器中
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        setName<span style="color:#f92672">(</span>name<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        setAge<span style="color:#f92672">(</span>age<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        setSalary<span style="color:#f92672">(</span>salary<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getName</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setName</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//加入对数据的检测，相当于增加了业务逻辑
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>name<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">&gt;=</span> 2 <span style="color:#f92672">&amp;&amp;</span> name<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">&lt;=</span> 6<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;名字的长度不对&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;佚名&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getAge</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> age<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setAge</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> age<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//判断
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>age <span style="color:#f92672">&gt;=</span> 1 <span style="color:#f92672">&amp;&amp;</span> age <span style="color:#f92672">&lt;=</span> 120<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> age<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;年龄需要在1~120之间，给默认年龄18&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> 18<span style="color:#f92672">;</span><span style="color:#75715e">//不合理给一个默认年龄
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">getSalary</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//可以增加对当前对象的权限判断
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> salary<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setSalary</span><span style="color:#f92672">(</span><span style="color:#66d9ef">double</span> salary<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">salary</span> <span style="color:#f92672">=</span> salary<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//写一个方法，返回属性信息
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">info</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;信息为 name =&#34;</span> <span style="color:#f92672">+</span> name <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; age=&#34;</span> <span style="color:#f92672">+</span> age <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; salary=&#34;</span> <span style="color:#f92672">+</span> salary<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h1 id="继承">继承</h1>
+<p>![](C:\Users\20288\Pictures\Screenshots\屏幕截图 2023-08-26 122009.png)</p>
+<ul>
+<li>
+<p>子类访问父类私有属性</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.czxlx.extend_<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Base</span> <span style="color:#f92672">{</span><span style="color:#75715e">//父类
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> n1 <span style="color:#f92672">=</span> 100<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">int</span> n2 <span style="color:#f92672">=</span> 200<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> n3 <span style="color:#f92672">=</span> 300<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> n4 <span style="color:#f92672">=</span> 400<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    当创建子类对象时，不管使用子类的那个构造器，默认情况下总会去调用父类的无参构造器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    如果父类没有提供无参构造器，则必须在子类的构造器中用super去指定使用父类的哪个构造
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    器来完成父类的初始化，否则编译不会通过
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Base</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span><span style="color:#75715e">//无参构造器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//super();//默认调用父类的无参构造器，系统默认（隐藏）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Base()....&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//父类提供一个公共的方法来返回私有属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getN4</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> n4<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test100</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test100&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test200</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test200&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test300</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test300&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test400</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test400&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">getTest400</span><span style="color:#f92672">(){</span>
+</span></span><span style="display:flex;"><span>        test400<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>需要父类提供一个公共的方法来作为==中间人==，让子类来访问这个中间人</p>
+</li>
+</ul>
+<h2 id="继承相关细节">继承相关细节</h2>
+<ul>
+<li>
+<p>子类必须调用父类的构造器，完成父类初始化</p>
+</li>
+<li>
+<p>父类若没有无参构造器，需要在子类构造器中用super去指定</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">super</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;simth&#34;</span><span style="color:#f92672">,</span> 30<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//若要指定调用父类的某个构造器，需要super（参数列表）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//super在使用时，必须放在构造器的第一行（只能在构造器中使用），思考：//访问构造器，必须置于第一条语句 ，谁放第一行
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">this</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jack&#34;</span><span style="color:#f92672">,</span> 18<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//两个方法不能共存在一个构造器中
+</span></span></span></code></pre></div></li>
+<li>
+<p>Java所有类都是Object类的子类</p>
+</li>
+<li>
+<p>父类构造器的调用不限于直接父类，将一直向上追溯到Object类（顶级父类）</p>
+</li>
+<li>
+<p>子类只能直接继承一个父类，Java中是==单继承机制==</p>
+</li>
+<li>
+<p>不能滥用继承，必须满足is-a的逻辑关系</p>
+</li>
+<li>
+<p>子类继承父类所有的类和属性</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Music <span style="color:#66d9ef">extends</span> Person<span style="color:#75715e">//不合理
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Cat <span style="color:#66d9ef">extends</span> Animal<span style="color:#75715e">//合理
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//若想继承两个父类，就让其中一个类成为父类的父类
+</span></span></span></code></pre></div></li>
+</ul>
+<h2 id="继承的内存机制">继承的内存机制</h2>
+<p>![继承的内存机制](C:\Users\20288\Pictures\Screenshots\屏幕截图 2023-08-28 101951.png)</p>
+<ul>
+<li>
+<p>先在方法区加载类的信息；再在堆区开辟对象son的空间，在son的空间中依次开辟爷爷与父亲</p>
+<p>的空间并将相应的地址或数据储存在空间中</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.czxlx.extend_<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ExtendsTheory</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Son son <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Son<span style="color:#f92672">();</span><span style="color:#75715e">//内存的布局
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        1.首先查看子类是否有该属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        2.如果子类有这个属性，并且可以访问，则返回信息
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        3.如果子类没有这个属性，就看父类有没有这个属性（有且可以访问，则返回信息）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        4.若父类也没有，就依次向上执行3的规则，直到Object类
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        */</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>son<span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">);</span><span style="color:#75715e">//按照查找关系
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>son<span style="color:#f92672">.</span><span style="color:#a6e22e">getAge</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>son<span style="color:#f92672">.</span><span style="color:#a6e22e">hobby</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GrandPa</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    String name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;大头爷爷&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    String hobby <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;旅游&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Father</span> <span style="color:#66d9ef">extends</span> GrandPa <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    String name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;大头爸爸&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> age <span style="color:#f92672">=</span> 39<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getAge</span><span style="color:#f92672">(){</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">age</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Son</span> <span style="color:#66d9ef">extends</span> Father <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    String name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;大头儿子&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="继承中类的基本操作">继承中类的基本操作</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//1.属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//2.构造器 {super（）}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//3.封装
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//4.其他方法
+</span></span></span></code></pre></div><h1 id="super关键字">super关键字</h1>
+<blockquote>
+<p>super代表父类的引用，用于访问父类的方法，属性，构造器,解决重名（就近原则）</p>
+<p>好处：父类与子类的构造器初始化分工明确</p>
+</blockquote>
+<h2 id="基本语法">基本语法</h2>
+<ul>
+<li>访问父类的属性，但不能访问父类的private属性</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//super.属性名
+</span></span></span></code></pre></div><ul>
+<li>访问父类的方法，但不能访问父类的private方法</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//super.方法名(参数列表)
+</span></span></span></code></pre></div><ul>
+<li>访问父类的构造器，必须是构造器中第一句，且只有一句</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//super.(参数列表)
+</span></span></span></code></pre></div><h2 id="细节">细节</h2>
+<ul>
+<li>若子类和父类没有重名的方法，super，this，直接调用，都可以</li>
+<li>super可以访问爷爷的方法或者属性（重名），就最近原则，A-&gt;B-&gt;C</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//1.从子类开始向上查找，直到Object
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//2.找到后，能访问，则调用，否则报错
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//3.没找到，报错
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>cal<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cal</span><span style="color:#f92672">();</span><span style="color:#75715e">//等价域cal()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cal</span><span style="color:#f92672">()</span><span style="color:#75715e">//没有查找本类的过程（跳过本类）
+</span></span></span></code></pre></div><ul>
+<li>
+<p>若子类和父类有重名的方法，必须使用super来调用父类的方法</p>
+</li>
+<li>
+<p>属性也一样</p>
+<p>![](C:\Users\20288\Pictures\Screenshots\屏幕截图 2023-08-29 111340.png)</p>
+</li>
+</ul>
+<h1 id="方法重写覆盖override">方法重写/覆盖（override）</h1>
+<blockquote>
+<p>子类有一个方法和父类及其以上的类中的某个方法完全相同（==方法名==，返回值类型，==参数==）</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//父类
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Dog</span> <span style="color:#66d9ef">extends</span> Animal<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">cry</span><span style="color:#f92672">(){</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;你在狗叫什么&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//子类
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Dog</span> <span style="color:#66d9ef">extends</span> Animal<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">cry</span><span style="color:#f92672">(){</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;你在狗叫什么&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//cry()重写
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//就近原则调用
+</span></span></span></code></pre></div><ul>
+<li>
+<p>返回值类型</p>
+<ol>
+<li>
+<p>子类和父类需要一样</p>
+</li>
+<li>
+<p>父类的返回值类型包含子类的返回值类型， 比如：父类：Object；子类：String</p>
+<p>String 是Object的子类</p>
+</li>
+</ol>
+</li>
+<li>
+<p>子类方法不能缩小父类的访问权限</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">protected</span> <span style="color:#f92672">&gt;</span> 默认 <span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">private</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>重载与重写</p>
+<p>![](C:\Users\20288\Pictures\Screenshots\屏幕截图 2023-08-29 160958.png)</p>
+</li>
+</ul>
+<h1 id="多态">多态</h1>
+<blockquote>
+<p>多种状态；方法或对象具有多种形态，多态建立在封装与继承之上</p>
+</blockquote>
+<h2 id="方法的多态">方法的多态</h2>
+<ul>
+<li>
+<p>重写和重载就体现了多态</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//方法的重载
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>a<span style="color:#f92672">.</span><span style="color:#a6e22e">sum</span><span style="color:#f92672">(</span>10<span style="color:#f92672">,</span> 20<span style="color:#f92672">,</span> 30<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>a<span style="color:#f92672">.</span><span style="color:#a6e22e">sum</span><span style="color:#f92672">(</span>10<span style="color:#f92672">,</span> 30<span style="color:#f92672">,</span> 45<span style="color:#f92672">,</span> 52<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//传入不同的参数，调用不同的sum方法，就体现了多态
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//方法的重写
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>a<span style="color:#f92672">.</span><span style="color:#a6e22e">say</span><span style="color:#f92672">()</span><span style="color:#75715e">//父类
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>b<span style="color:#f92672">.</span><span style="color:#a6e22e">say</span><span style="color:#f92672">()</span><span style="color:#75715e">//子类
+</span></span></span></code></pre></div></li>
+</ul>
+<h2 id="对象的多态"><em><strong>==对象的多态==</strong></em></h2>
+<blockquote>
+<p>有一种一对多的感觉，一个父类对上多个子类</p>
+</blockquote>
+<ul>
+<li>
+<p>一个对象的编译类型和运行类型可以不一致</p>
+</li>
+<li>
+<p>编译类型在定义对象时就确定了，不能更改</p>
+</li>
+<li>
+<p>运行类型是可以变化的</p>
+</li>
+<li>
+<p>编译类型看定义时 = 号 的左边，运行类型看 = 号右边</p>
+<p><strong>引用名为animal的对象有多种形态</strong></p>
+<p>比如：new Dog ;new Cat</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Animal animal <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Dog<span style="color:#f92672">();</span><span style="color:#75715e">//animal编译类型是Animal;运行类型是Dog
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>animal <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Cat<span style="color:#f92672">();</span><span style="color:#75715e">//animal的运行类型变成了Cat，编译类型仍是Animal
+</span></span></span></code></pre></div></li>
+</ul>
+<h2 id="向上转型">向上转型</h2>
+<blockquote>
+<ol>
+<li>
+<p>父类的引用指向了子类的对象</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Animal animal <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Cat<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 父类   -&gt;   子类
+</span></span></span></code></pre></div></li>
+<li>
+<ul>
+<li>
+<p><strong>可以调用父类的所有成员（需要访问权限）不可调用子类的特有成员</strong></p>
+<ol>
+<li>
+<p>若是普通继承子类就可以调用子类特有成员</p>
+<p>但为了使子类对象呈现多种形态（代码复用与维护），用向上转型</p>
+</li>
+<li>
+<p><strong>animal能调用哪些成员，在编译阶段就决定了，是由编译类型来控制</strong></p>
+</li>
+</ol>
+</li>
+<li>
+<p>最终运行效果看子类(运行类型)的具体实现，调用方法时，从本类开始查找</p>
+</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<p>不可调用子类特有的成员，重写的成员从本类开始查找</p>
+<h2 id="向下转型">向下转型</h2>
+<ul>
+<li>==在向上转型的基础上解决了不能调用子类特有成员的问题==</li>
+</ul>
+<blockquote>
+<ol>
+<li>
+<p>语法： 子类类型  引用名 = （子类类型）==父类引用==</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Cat cat <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Cat<span style="color:#f92672">)</span> animal<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//子 -&gt; 父（强转）
+</span></span></span></code></pre></div><p>只能强转父类的引用；不能强转父类的对象</p>
+</li>
+<li>
+<p>要求父类的引用必须指向当前目标类型的对象</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//向下转型 必须指向同一个对象，强转前指向cat，强转后也指向cat
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//身份变了，对象没变
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//向下转型的强转必须是由父类强转为一个子类
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//对象不能改变
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Object objPri <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Integer<span style="color:#f92672">(</span>5<span style="color:#f92672">)</span><span style="color:#75715e">//向上转型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String str <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>String<span style="color:#f92672">)</span> objPri<span style="color:#f92672">;</span><span style="color:#75715e">//不能强转为String，应该为Integer
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Integer Str1 <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Integer<span style="color:#f92672">)</span> objPri<span style="color:#f92672">;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>向下转型后，可以调用子类中所有的成员</p>
+</li>
+</ol>
+</blockquote>
+<p>想法：引用是地址，是指针，指向某个空间 ;  ==有向上转型才有向下转型==</p>
+<h2 id="属性重写问题">属性重写问题</h2>
+<ol>
+<li>属性没有重写，属性的值看编译类型</li>
+<li>instanceOf比较操作符，用于判断对象的==运行类型==是否为XX类型或为XX类型的子类型</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>AA aa <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BB<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>aa <span style="color:#66d9ef">instanceof</span> AA<span style="color:#f92672">)</span><span style="color:#75715e">//true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>aa <span style="color:#66d9ef">instanceof</span> BB<span style="color:#f92672">)</span><span style="color:#75715e">//true    
+</span></span></span></code></pre></div><p>![](C:\Users\20288\Pictures\Screenshots\屏幕截图 2023-08-30 151937.png)</p>
+<ul>
+<li>子类的对象包含父类的所有属性和方法</li>
+<li>属性看编译类型，方法看运行类型</li>
+</ul>
+<h2 id="动态绑定机制">==动态绑定机制==</h2>
+<blockquote>
+<p>属性走编译类型，方法走运行类型</p>
+<p>==属性哪里声明，哪里调用==</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DynamicBinding</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>           A a <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> B<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>a<span style="color:#f92672">.</span><span style="color:#a6e22e">sum</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>a<span style="color:#f92672">.</span><span style="color:#a6e22e">sum1</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 10<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//动态绑定：
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//当调用对象方法的时候，该方法会和该对象的内存地址/运行类型绑定
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//当调用对象属性时，没有动态绑定，哪里声明，哪里访问
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">sum</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> getI<span style="color:#f92672">()</span> <span style="color:#f92672">+</span> 10<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">sum1</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> i <span style="color:#f92672">+</span> 10<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getI</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> i<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span> <span style="color:#66d9ef">extends</span> A <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 20<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//    public int sum() {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//        return i + 20;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//    public int sum1() {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//        return i + 10;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getI</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> i<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="多态的应用">多态的应用</h2>
+<h3 id="多态数组">多态数组</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PloyArr</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//父类的引用可以指向子类的对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Person<span style="color:#f92672">[]</span> persons <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Person<span style="color:#f92672">[</span>5<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>        persons<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Person<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jack&#34;</span><span style="color:#f92672">,</span> 20<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        persons<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;张三&#34;</span><span style="color:#f92672">,</span> 18<span style="color:#f92672">,</span> 99<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        persons<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;李四&#34;</span><span style="color:#f92672">,</span> 17<span style="color:#f92672">,</span> 86<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        persons<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Teacher<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;李老师&#34;</span><span style="color:#f92672">,</span> 45<span style="color:#f92672">,</span> 5000<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        persons<span style="color:#f92672">[</span>4<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Teacher<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;黄老师&#34;</span><span style="color:#f92672">,</span> 36<span style="color:#f92672">,</span> 10000<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//循环遍历多态数组，调用say方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> persons<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">//persons[i]的编译类型是Person，运行类型根据实际情况由JVM来判断
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>persons<span style="color:#f92672">[</span>i<span style="color:#f92672">].</span><span style="color:#a6e22e">say</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>persons<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#66d9ef">instanceof</span> Student<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">//判断persons[i]的运行类型是否为Student
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#75715e">//Student student = (Student) persons[i];//向下转型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#f92672">((</span>Student<span style="color:#f92672">)</span> persons<span style="color:#f92672">[</span>i<span style="color:#f92672">]).</span><span style="color:#a6e22e">study</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>persons<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#66d9ef">instanceof</span> Teacher<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">((</span>Teacher<span style="color:#f92672">)</span> persons<span style="color:#f92672">[</span>i<span style="color:#f92672">]).</span><span style="color:#a6e22e">teach</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span><span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>persons<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#66d9ef">instanceof</span> Person<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span><span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;你的类型有误&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="多态参数">多态参数</h3>
+<ul>
+<li>方法定义的形参类型为父类类型，实参为子类类型</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Worker worker <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Worker<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;张三&#34;</span><span style="color:#f92672">,</span>25000<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        Manager manager <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Manager<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;王五&#34;</span><span style="color:#f92672">,</span> 40000<span style="color:#f92672">,</span> 200000<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        Test test <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Test<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        test<span style="color:#f92672">.</span><span style="color:#a6e22e">showEmpAnnual</span><span style="color:#f92672">(</span>worker<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        test<span style="color:#f92672">.</span><span style="color:#a6e22e">showEmpAnnual</span><span style="color:#f92672">(</span>manager<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        test<span style="color:#f92672">.</span><span style="color:#a6e22e">testWork</span><span style="color:#f92672">(</span>worker<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        test<span style="color:#f92672">.</span><span style="color:#a6e22e">testWork</span><span style="color:#f92672">(</span>manager<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//实现获取任何员工对象的工资，并在main方法中调用该方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">showEmpAnnual</span><span style="color:#f92672">(</span>Employee e<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//用父类类型作为形参（多态参数），是为了只写一个方法，这个方法可以接收不同的子类对象（实参），提高代码的复用性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>e<span style="color:#f92672">.</span><span style="color:#a6e22e">getAnnual</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//testWork方法，如果是普通员工，调用work方法；如果是经理，调用manage方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testWork</span><span style="color:#f92672">(</span>Employee e<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>e <span style="color:#66d9ef">instanceof</span> Worker<span style="color:#f92672">){</span><span style="color:#75715e">//instanceof用于判断运行类型是否相同
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#f92672">((</span>Worker<span style="color:#f92672">)</span> e<span style="color:#f92672">).</span><span style="color:#a6e22e">work</span><span style="color:#f92672">();</span><span style="color:#75715e">//向下转型是为了调用子类特有的方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span><span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>e <span style="color:#66d9ef">instanceof</span> Manager<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">((</span>Manager<span style="color:#f92672">)</span> e<span style="color:#f92672">).</span><span style="color:#a6e22e">manage</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span><span style="color:#66d9ef">else</span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;您的类型不匹配&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h1 id="object类详解">Object类详解</h1>
+<h2 id="equals方法">equals方法</h2>
+<p>== 与 equals对比</p>
+<ul>
+<li>
+<p>== 是一个比较运算符</p>
+<ol>
+<li>既可以判断基本类型，也可以判断引用类型</li>
+<li>==基本类型，判断值相等==</li>
+<li>引用类型，判断地址相等</li>
+</ol>
+</li>
+<li>
+<p>equals是Object类中的方法</p>
+<ol>
+<li>只能判断引用类型</li>
+<li>Ctrl + B 查看原码</li>
+<li>默认判断地址是否相等，子类往往重写该方法，用于判断内容是否相等</li>
+</ol>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//这个value就是String类里保存的字符数组，比如你定义一个字符串Hello，
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// 那么字符串对象里就会有一个字符数组内容是[&#39;H&#39;,&#39;e&#39;,&#39;l&#39;,&#39;l&#39;,&#39;o&#39;]。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">/*public boolean equals(Object anObject) {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">            if (this == anObject) {//判断是否为同一个对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                return true;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">            }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">            if (anObject instanceof String) {//判读运行类型是否为字符串类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                String anotherString = (String)anObject;//向下转型是为了使用String类中的value方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                int n = value.length;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                if (n == anotherString.value.length) {//判断长度是否相等
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                    char v1[] = value;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                    char v2[] = anotherString.value;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                    int i = 0;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                    while (n-- != 0) {//传进数组，一个一个字符比较
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                        if (v1[i] != v2[i])
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                            return false;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                        i++;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                    }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                    return true;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">            }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">            return false;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        }*/</span>
+</span></span></code></pre></div><h2 id="重写equals方法">重写equals方法</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//重写Object类中的equals方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>Object obj<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span> <span style="color:#f92672">==</span> obj<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//向下转型，是为了访问子类特有的成员
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>obj <span style="color:#66d9ef">instanceof</span> Person01<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">//这里的equals是String类下的equals
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(((</span>Person01<span style="color:#f92672">)</span> obj<span style="color:#f92672">).</span><span style="color:#a6e22e">name</span><span style="color:#f92672">)</span> <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">==</span> <span style="color:#f92672">((</span>Person01<span style="color:#f92672">)</span> obj<span style="color:#f92672">).</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gender</span> <span style="color:#f92672">==</span> <span style="color:#f92672">((</span>Person01<span style="color:#f92672">)</span> obj<span style="color:#f92672">).</span><span style="color:#a6e22e">gender</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="hashcode">HashCode</h2>
+<blockquote>
+<ol>
+<li>两个引用，若指向同一个对象，hashcode值一样，否则不同</li>
+<li>哈希值根据地址号而来，不能完全等价于地址</li>
+</ol>
+</blockquote>
+<h2 id="tostring方法">toString方法</h2>
+<ul>
+<li>
+<p>默认返回 ：全类名(包名 + 类名) + @ + 哈希值的十六进制</p>
+<blockquote>
+<p>子类往往重写toString方法，用于放回对象的属性信息</p>
+</blockquote>
+</li>
+<li>
+<p>重写toString方法，输出对象属性（可更改）</p>
+<blockquote>
+<p>使用快捷键，Alt+insert  &ndash;&gt; toString</p>
+</blockquote>
+</li>
+<li>
+<p>当输出一个对象时，toString方法会被默认调用</p>
+</li>
+</ul>
+<h2 id="finalize方法">finalize方法</h2>
+<blockquote>
+<p>很少运用，面试多</p>
+</blockquote>
+<ul>
+<li>
+<p>当对象被回收时，系统自动调用该对象的finalize方法</p>
+<blockquote>
+<p>子类可以重写该方法，用于释放某些资源</p>
+</blockquote>
+</li>
+<li>
+<p>什么时候回收：当某个对象没有任何引用时，则JVM就认为这是一个垃圾对象</p>
+<p>就会使用垃圾回收机制来销毁该对象，在销毁对象前，会先调用finalize方法</p>
+</li>
+<li>
+<p>垃圾回收机制的调用，是由系统来决定的（即有自己的GC算法），也可以通过</p>
+<p>System.gc()主动触发垃圾回收机制</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Finalize</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Car car <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Car<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;法拉利&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        car <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//这时 car对象是一个垃圾，垃圾回收器会回收（销毁）该对象，在销毁前会调用finalize方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//程序员可以在finalize中实现自己的业务逻辑代码（比如释放资源：数据库链接，或者打开文件）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">gc</span><span style="color:#f92672">();</span><span style="color:#75715e">//主动调用垃圾回收器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;exit&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Car</span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Car</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//重写finalize方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">finalize</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Throwable <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;销毁汽车 &#34;</span> <span style="color:#f92672">+</span> name<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">finalize</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h1 id="断点调试debug">断点调试(debug)</h1>
+<ul>
+<li>
+<p>打上断点，一步一步执行源代码，寻找错误</p>
+</li>
+<li>
+<p>在断点调试过程中是运行状态，是以对象的运行类型决定的</p>
+</li>
+<li>
+<p>快捷键</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">1.F7 : 跳入方法内
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">2.F8 : 逐行执行代码（跳过）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">3.shift + F8 : 跳出方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">4.F9 : 执行下一个断点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span></code></pre></div><p>![](C:\Users\20288\Pictures\Screenshots\屏幕截图 2023-08-31 150319.png)</p>
+</li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
